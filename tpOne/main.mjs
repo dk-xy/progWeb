@@ -1,4 +1,4 @@
-import Cercle from "../demo/Class/Cercle.js";
+import Cercle from "../Classes/Cercle.js";
 
 //creation du canvas
 const ctx = document.querySelector('canvas').getContext('2d');

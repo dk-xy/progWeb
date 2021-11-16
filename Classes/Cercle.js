@@ -1,11 +1,13 @@
 export default class Cercle {
     //on envoit un objet dans le constructeur à l'aide des {}
     //les = dans les params sont des valeurs par défaut
-    constructor({ x = 0, y = 0, r = 100, color = 'red' } = {}) { // ={} pour apply valeurs à objet vide
+    constructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {}) { // ={} pour apply valeurs à objet vide
         this.x = x
         this.y = y
         this.r = r;
+        this.speed = speed;
         this.color = color;
+        this.colorborder = colorborder;
     }
 
     draw(ctx) {

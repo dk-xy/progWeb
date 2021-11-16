@@ -1,7 +1,8 @@
 import Cercle from "../Classes/Cercle.js";
 import MainLoop from "../lib/MainLoop.js";
 import Keyboard from "../Classes/keyboard.js";
-import colorGeneretor from "..lib/colorGeneretor.js"
+import { randomColor } from "../lib/colorGeneretor.mjs";
+import { getRandomInt } from "../lib/math/getRandomInt.js";
 
 //creation du canvas
 const ctx = document.querySelector('canvas').getContext('2d');
@@ -26,7 +27,25 @@ let tabCercle = new Array();
     
 // }
 
-const c1 = new Cercle({y: 200, x: 100, r: 20, color: 'red'})
+//const c1 = new Cercle({y: 200, x: 100, r: 20, color: 'red'})
+
+for (let i = 0; i < 3; i++) {
+    let newColor = randomColor();
+    let rayonMin = 5;
+    let chance = getRandomInt(0,3);
+    let rayonMax;
+    let vitesse = 0.1;
+    if (chance > 2) {
+        rayonMax = 20;
+        } else{
+        rayonMax = 50;
+    }
+    let posX = getRandomInt(0, ctx.canvas.height)
+    let posY = getRandomInt(0, ctx.canvas.width)
+    let oneCercle = new Cercle(posX,posY,rayonMax, vitesse, newColor);
+    //onstructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {})
+}
+
 
 let leClavier = new Keyboard();
 

@@ -7,7 +7,7 @@ export default class Cercle {
         this.r = r;
         this.speed = speed;
         this.color = color;
-        this.colorborder = colorborder;
+        this.colorborder = color;
     }
 
     draw(ctx) {
@@ -24,7 +24,9 @@ export default class Cercle {
 
     setColor(color) {
         this.color = color;
+        this.colorborder = color;
     }
+
 
     setX(x){
         this.x = x;

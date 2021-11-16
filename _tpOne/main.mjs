@@ -19,3 +19,18 @@ oneCercle.setColor(oneCercle.getRandomColor())
 oneCercle.draw(ctx);
     
 }
+
+const c1 = new Cercle({y: 200, x: 100, r: 20, color: 'red'})
+
+let lastTime = 0;
+function tick(time){
+    let deltaT = time - lastTime;
+    lastTime = time;
+    ctx.canvas.height = ctx.canvas.clientHeight;
+    ctx.canvas.width = ctx.canvas.clientWidth;
+    c1.setX(c1.x+0.1*deltaT);
+    c1.draw(ctx)
+    requestAnimationFrame(tick);
+}
+
+requestAnimationFrame(tick);

@@ -1,7 +1,7 @@
 import Cercle from "../Classes/Cercle.js";
 import MainLoop from "../lib/MainLoop.js";
 import Keyboard from "../Classes/keyboard.js";
-import { randomColor } from "../lib/colorGeneretor.mjs";
+import randomColor from "../lib/colorGenerator.mjs";
 import { getRandomInt } from "../lib/math/getRandomInt.js";
 
 //creation du canvas
@@ -28,11 +28,12 @@ let tabCercle = new Array();
 // }
 
 //const c1 = new Cercle({y: 200, x: 100, r: 20, color: 'red'})
-
-for (let i = 0; i < 3; i++) {
+console.log(ctx.canvas.height)
+for (let i = 0; i < 300; i++) {
     let newColor = randomColor();
     let rayonMin = 5;
-    let chance = getRandomInt(0,3);
+    let chance = getRandomInt(3,0);
+    console.log(chance)
     let rayonMax;
     let vitesse = 0.1;
     if (chance > 2) {
@@ -40,42 +41,88 @@ for (let i = 0; i < 3; i++) {
         } else{
         rayonMax = 50;
     }
-    let posX = getRandomInt(0, ctx.canvas.height)
-    let posY = getRandomInt(0, ctx.canvas.width)
-    let oneCercle = new Cercle(posX,posY,rayonMax, vitesse, newColor);
+    let posX = getRandomInt(0, ctx.canvas.height);
+    let posY = getRandomInt(0, ctx.canvas.width);
+    console.log(posX)
+    // let oneCercle = new Cercle(posX,posY,rayonMax, vitesse, newColor, newColor);
+    let oneCercle = new Cercle({x: posX, y: posY, r: rayonMax,speed: vitesse, color: newColor,  colorborder: newColor});
+    console.log(oneCercle)
+    tabCercle.push(oneCercle);
     //onstructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {})
 }
+
+//console.log(tabCercle);
+//interpollation
 
 
 let leClavier = new Keyboard();
 
-MainLoop.setUpdate(dt=>{
-    console.log(dt)
-    c1.setX(c1.x+0.1*dt)
-})
+// MainLoop.setUpdate(dt=>{
+//     console.log(dt)
+//     //c1.setX(c1.x+0.1*dt)
+// })
 
-MainLoop.setDraw(dt=>{
-    c1.draw(dt);
-})
+// MainLoop.setDraw(dt=>{
+//     //c1.draw(dt);
+// })
 
-MainLoop.start()
+// MainLoop.start()
 
 let lastTime = 0;
 let animationTime = 0;
-function tick(time){
-    let deltaT = time - lastTime;
-    lastTime = time;
-    animationTime+=deltaT;
-    //estimation de 2 sec d'interval de temps
-    if(animationTime>=2000){
-        console.log(animationTime);
-        animationTime-=2000
-    }
-    ctx.canvas.height = ctx.canvas.clientHeight;
-    ctx.canvas.width = ctx.canvas.clientWidth;
-    c1.setX(c1.x+0.1*deltaT);
-    c1.draw(ctx)
-    requestAnimationFrame(tick);
-}
 
- requestAnimationFrame(tick)
+
+// //estimation de 2 sec d'interval de temps
+// if(animationTime>=2000){
+//     console.log(animationTime);
+//     animationTime-=2000
+// }
+MainLoop.setUpdate(dt => {
+    tabCercle.forEach(elm => {
+        elm.setX(elm.x+0.1*dt)
+    })
+})
+
+
+
+
+//c1.setX(c1.x+0.1*deltaT);
+//c1.draw(dt)
+
+MainLoop.setDraw(dt=>{
+    ctx.canvas.height = ctx.canvas.clientHeight;
+ctx.canvas.width = ctx.canvas.clientWidth;
+    tabCercle.forEach(elm=>{
+        elm.draw(ctx)
+    })
+})
+
+MainLoop.start()
+// function tick(time){
+//     let deltaT = time - lastTime;
+//     lastTime = time;
+//     animationTime+=deltaT;
+//     //estimation de 2 sec d'interval de temps
+//     if(animationTime>=2000){
+//         console.log(animationTime);
+//         animationTime-=2000
+//     }
+//     ctx.canvas.height = ctx.canvas.clientHeight;
+//     ctx.canvas.width = ctx.canvas.clientWidth;
+//     //c1.setX(c1.x+0.1*deltaT);
+//     //c1.draw(ctx)
+//     tabCercle.forEach(elm => {
+//     MainLoop.setUpdate(dt=>{
+//         elm.setX(elm.x+0.1*dt)
+//     })
+//     MainLoop.setDraw(dt=>{
+//         elm.draw(ctx);
+//     })
+    
+//     MainLoop.start()
+// });
+
+//     requestAnimationFrame(tick);
+
+
+//  requestAnimationFrame(tick)

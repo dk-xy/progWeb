@@ -173,7 +173,10 @@ window.addEventListener('keydown', evt => {
 
 
 window.addEventListener('keyup', evt => {
-    MainLoop.stop()
+    if (leClavier.keys.size == 0) {
+        MainLoop.stop()
+    }
+    
 })
 
 // function tick(time){

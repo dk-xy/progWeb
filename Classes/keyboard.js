@@ -5,14 +5,16 @@ constructor(){
     window.addEventListener('keyup', evt => this.onKeyUp(evt));
 
 }
+
 onKeyDown(evt){
-    console.log(evt.key)
+    //console.log(evt.key)
     this.keys.add(evt.code)
+
     //console.log(this.key)
 }
 
 onKeyUp(evt){
-    this.key.delete(evt.code)
+    //console.log(evt.key)
 }
 
 isKeyDown(){

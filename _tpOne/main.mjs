@@ -99,18 +99,28 @@ window.addEventListener('keydown', evt => {
     console.log(evt.code)
     MainLoop.start()
     switch (true) {
+        //added infinity here
         case leClavier.keys.has('KeyD') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
-                    elm.setX(elm.x + elm.speed * dt)
+                    if (elm.x >= ctx.canvas.width) {
+                        elm.setX(0);
+                    } else {
+                        elm.setX(elm.x + elm.speed * dt)
+                    }
+
                 })
             })
-            console.log('hello')
+
             break;
+            //added inifinity here too but it's wonky
         case leClavier.keys.has('KeyA') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x - elm.speed * dt)
+                    if (elm.x <= 0) {
+                        elm.setX(ctx.canvas.width)
+                    }
                 })
             })
             break;
@@ -176,7 +186,7 @@ window.addEventListener('keyup', evt => {
     if (leClavier.keys.size == 0) {
         MainLoop.stop()
     }
-    
+
 })
 
 // function tick(time){

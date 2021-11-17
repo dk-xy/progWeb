@@ -37,7 +37,6 @@ for (let i = 0; i < 300; i++) {
     let chance = getRandomInt(3, 0);
     console.log(chance)
     let rayonMax;
-    let vitesse = 0.1;
     if (chance > 2) {
         rayonMax = 20;
     } else {
@@ -47,7 +46,7 @@ for (let i = 0; i < 300; i++) {
     let posY = getRandomInt(0, ctx.canvas.height);
     console.log(posX)
     // let oneCercle = new Cercle(posX,posY,rayonMax, vitesse, newColor, newColor);
-    let oneCercle = new Cercle({ x: posX, y: posY, r: getRandomInt(rayonMin,rayonMax), speed: vitesse, color: newColor, colorborder: newColor });
+    let oneCercle = new Cercle({ x: posX, y: posY, r: getRandomInt(rayonMin, rayonMax), color: newColor, colorborder: newColor });
     console.log(oneCercle)
     tabCercle.push(oneCercle);
     //onstructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {})
@@ -84,6 +83,7 @@ let animationTime = 0;
 // })
 //c1.setX(c1.x+0.1*deltaT);
 //c1.draw(dt)
+MainLoop.start()
 MainLoop.setDraw(dt => {
     ctx.canvas.height = ctx.canvas.clientHeight;
     ctx.canvas.width = ctx.canvas.clientWidth;
@@ -91,50 +91,88 @@ MainLoop.setDraw(dt => {
         elm.draw(ctx)
     })
 })
-MainLoop.start()
+
+
 
 
 window.addEventListener('keydown', evt => {
+    console.log(evt.code)
     MainLoop.start()
-    switch (evt.key) {
-        case 'd':
+    switch (true) {
+        case leClavier.keys.has('KeyD') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
-                    elm.setX(elm.x+0.1*dt)
+                    elm.setX(elm.x + elm.speed * dt)
                 })
             })
             console.log('hello')
             break;
-        case 'a':
+        case leClavier.keys.has('KeyA') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
-                    elm.setX(elm.x-0.1*dt)
+                    elm.setX(elm.x - elm.speed * dt)
                 })
             })
             break;
-        case's':
-        MainLoop.setUpdate(dt => {
-            tabCercle.forEach(elm => {
-                elm.setY(elm.y+0.1*dt)
-            })
-        })
-        break;
-        case 'w':
+        case leClavier.keys.has('KeyS') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
-                    elm.setY(elm.y-0.1*dt)
+                    elm.setY(elm.y + elm.speed * dt)
+                })
+            })
+            break;
+        case leClavier.keys.has('KeyW') && leClavier.keys.size == 1:
+            MainLoop.setUpdate(dt => {
+                tabCercle.forEach(elm => {
+                    elm.setY(elm.y - elm.speed * dt)
+                })
+            })
+            break;
+        case leClavier.keys.has('KeyD') && leClavier.keys.has('KeyW'):
+            MainLoop.setUpdate(dt => {
+                tabCercle.forEach(elm => {
+                    elm.setX(elm.x + elm.speed * dt)
+                    elm.setY(elm.y - elm.speed * dt)
+                })
+            })
+            break;
+        case leClavier.keys.has('KeyD') && leClavier.keys.has('KeyS'):
+            MainLoop.setUpdate(dt => {
+                tabCercle.forEach(elm => {
+                    elm.setX(elm.x + elm.speed * dt)
+                    elm.setY(elm.y + elm.speed * dt)
+                })
+            })
+            break;
+
+        case leClavier.keys.has('KeyA') && leClavier.keys.has('KeyW'):
+            MainLoop.setUpdate(dt => {
+                tabCercle.forEach(elm => {
+                    elm.setX(elm.x - elm.speed * dt)
+                    elm.setY(elm.y - elm.speed * dt)
+                })
+            })
+            break;
+
+
+        case leClavier.keys.has('KeyA') && leClavier.keys.has('KeyS'):
+            MainLoop.setUpdate(dt => {
+                tabCercle.forEach(elm => {
+                    elm.setX(elm.x - elm.speed * dt)
+                    elm.setY(elm.y + elm.speed * dt)
                 })
             })
             break;
 
 
         default:
+            MainLoop.stop();
             break;
     }
 })
 
 
-window.addEventListener('keyup', evt=>{
+window.addEventListener('keyup', evt => {
     MainLoop.stop()
 })
 

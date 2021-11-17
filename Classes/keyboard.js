@@ -15,6 +15,7 @@ onKeyDown(evt){
 
 onKeyUp(evt){
     //console.log(evt.key)
+    this.keys.delete(evt.code)
 }
 
 isKeyDown(){

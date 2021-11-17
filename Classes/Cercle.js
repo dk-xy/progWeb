@@ -1,11 +1,29 @@
 export default class Cercle {
     //on envoit un objet dans le constructeur à l'aide des {}
     //les = dans les params sont des valeurs par défaut
-    constructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {}) { // ={} pour apply valeurs à objet vide
+    constructor({ x = 0, y = 0, r = 100, speed = 0.1, color = 'red', colorborder = 'red' } = {}) { // ={} pour apply valeurs à objet vide
         this.x = x
         this.y = y
         this.r = r;
-        this.speed = speed;
+        switch (true) {
+            case (this.r >= 5 && this.r <= 10):
+                this.speed = 0.1
+                break;
+            case (this.r > 10 && this.r <= 20):
+                this.speed = 0.2
+                break;
+            case (this.r > 20 && this.r <= 30):
+                this.speed = 0.3
+                break;
+            case (this.r > 30 && this.r <= 40):
+                this.speed = 0.4
+                break;
+            case (this.r > 40):
+                this.speed = 0.5
+                break;
+            default:
+                break;
+        }
         this.color = color;
         this.colorborder = color;
     }
@@ -27,15 +45,12 @@ export default class Cercle {
         this.colorborder = color;
     }
 
-
-    setX(x){
+    setX(x) {
         this.x = x;
     }
-
-    setY(y){
+    setY(y) {
         this.y = y;
     }
-
     getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -43,6 +58,10 @@ export default class Cercle {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+    }
+
+    getSpeed() {
+        return this.speed;
     }
 
 

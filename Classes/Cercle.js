@@ -7,10 +7,10 @@ export default class Cercle {
         this.r = r;
         switch (true) {
             case (this.r >= 5 && this.r <= 10):
-                this.speed = 0.1
+                this.speed = 0.09
                 break;
             case (this.r > 10 && this.r <= 20):
-                this.speed = 0.2
+                this.speed = 0.14
                 break;
             case (this.r > 20 && this.r <= 30):
                 this.speed = 0.3
@@ -19,7 +19,7 @@ export default class Cercle {
                 this.speed = 0.4
                 break;
             case (this.r > 40):
-                this.speed = 0.5
+                this.speed = 0.47
                 break;
             default:
                 break;

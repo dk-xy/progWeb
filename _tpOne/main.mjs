@@ -37,7 +37,7 @@ for (let i = 0; i < 300; i++) {
     let chance = getRandomInt(3, 0);
     console.log(chance)
     let rayonMax;
-    if (chance > 2) {
+    if (chance >= 2) {
         rayonMax = 20;
     } else {
         rayonMax = 50;

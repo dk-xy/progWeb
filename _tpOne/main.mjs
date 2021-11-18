@@ -128,6 +128,9 @@ window.addEventListener('keydown', evt => {
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setY(elm.y + elm.speed * dt)
+                    if (elm.y >= ctx.canvas.height) {
+                        elm.setY(0)
+                    }
                 })
             })
             break;
@@ -135,6 +138,9 @@ window.addEventListener('keydown', evt => {
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setY(elm.y - elm.speed * dt)
+                    if (elm.y <= 0) {
+                        elm.setY(ctx.canvas.height)
+                    }
                 })
             })
             break;

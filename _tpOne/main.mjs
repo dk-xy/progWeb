@@ -103,11 +103,10 @@ window.addEventListener('keydown', evt => {
         case leClavier.keys.has('KeyD') && leClavier.keys.size == 1:
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
-                    if (elm.x >= ctx.canvas.width) {
-                        elm.setX(0);
-                    } else {
-                        elm.setX(elm.x + elm.speed * dt)
-                    }
+                    elm.setX(elm.x + elm.speed * dt)
+                    if (elm.x >= ctx.canvas.width+elm.r) {
+                        elm.setX(0-elm.r);
+                    } 
 
                 })
             })
@@ -118,8 +117,8 @@ window.addEventListener('keydown', evt => {
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x - elm.speed * dt)
-                    if (elm.x <= 0) {
-                        elm.setX(ctx.canvas.width)
+                    if (elm.x <= 0-elm.r) {
+                        elm.setX(ctx.canvas.width+elm.r)
                     }
                 })
             })
@@ -128,8 +127,8 @@ window.addEventListener('keydown', evt => {
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setY(elm.y + elm.speed * dt)
-                    if (elm.y >= ctx.canvas.height) {
-                        elm.setY(0)
+                    if (elm.y >= ctx.canvas.height+elm.r) {
+                        elm.setY(0-elm.r)
                     }
                 })
             })
@@ -138,8 +137,8 @@ window.addEventListener('keydown', evt => {
             MainLoop.setUpdate(dt => {
                 tabCercle.forEach(elm => {
                     elm.setY(elm.y - elm.speed * dt)
-                    if (elm.y <= 0) {
-                        elm.setY(ctx.canvas.height)
+                    if (elm.y <= 0-elm.r) {
+                        elm.setY(ctx.canvas.height+elm.r)
                     }
                 })
             })
@@ -149,6 +148,12 @@ window.addEventListener('keydown', evt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x + elm.speed * dt)
                     elm.setY(elm.y - elm.speed * dt)
+                    if (elm.x >= ctx.canvas.width+elm.r) {
+                        elm.setX(0-elm.r);
+                    } 
+                    if (elm.y <= 0-elm.r) {
+                        elm.setY(ctx.canvas.height+elm.r)
+                    }
                 })
             })
             break;
@@ -157,6 +162,12 @@ window.addEventListener('keydown', evt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x + elm.speed * dt)
                     elm.setY(elm.y + elm.speed * dt)
+                    if (elm.x >= ctx.canvas.width+elm.r) {
+                        elm.setX(0-elm.r);
+                    } 
+                    if (elm.y >= ctx.canvas.height+elm.r) {
+                        elm.setY(0-elm.r)
+                    }
                 })
             })
             break;
@@ -166,6 +177,12 @@ window.addEventListener('keydown', evt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x - elm.speed * dt)
                     elm.setY(elm.y - elm.speed * dt)
+                    if (elm.x <= 0-elm.r) {
+                        elm.setX(ctx.canvas.width+elm.r)
+                    }
+                    if (elm.y <= 0-elm.r) {
+                        elm.setY(ctx.canvas.height+elm.r)
+                    }
                 })
             })
             break;
@@ -176,6 +193,12 @@ window.addEventListener('keydown', evt => {
                 tabCercle.forEach(elm => {
                     elm.setX(elm.x - elm.speed * dt)
                     elm.setY(elm.y + elm.speed * dt)
+                    if (elm.x <= 0-elm.r) {
+                        elm.setX(ctx.canvas.width+elm.r)
+                    }
+                    if (elm.y >= ctx.canvas.height+elm.r) {
+                        elm.setY(0-elm.r)
+                    }
                 })
             })
             break;

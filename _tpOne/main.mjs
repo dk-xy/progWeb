@@ -13,23 +13,7 @@ ctx.canvas.width = ctx.canvas.clientWidth;
 
 
 let tabCercle = new Array();
-
-//création de cercles
-
-// for (let i = 0; i < 200; i++) {
-// let randOne = Math.floor(Math.random() * 1000);
-// let randTwo = Math.floor(Math.random()*1000);
-// let randRad = Math.floor(Math.random()*20);
-// let oneCercle = new Cercle();
-// oneCercle.setX(randOne);
-// oneCercle.setY(randTwo);
-// oneCercle.setRadius(randRad);
-// oneCercle.setColor(oneCercle.getRandomColor())
-// oneCercle.draw(ctx);
-
-// }
-
-//const c1 = new Cercle({y: 200, x: 100, r: 20, color: 'red'})
+//Creation des cercles
 console.log(ctx.canvas.height)
 for (let i = 0; i < 300; i++) {
     let newColor = randomColor();
@@ -45,11 +29,9 @@ for (let i = 0; i < 300; i++) {
     let posX = getRandomInt(0, ctx.canvas.width);
     let posY = getRandomInt(0, ctx.canvas.height);
     console.log(posX)
-    // let oneCercle = new Cercle(posX,posY,rayonMax, vitesse, newColor, newColor);
     let oneCercle = new Cercle({ x: posX, y: posY, r: getRandomInt(rayonMin, rayonMax), color: newColor, colorborder: newColor });
     console.log(oneCercle)
     tabCercle.push(oneCercle);
-    //onstructor({ x = 0, y = 0, r = 100,speed = 20, color = 'red', colorborder = 'red' } = {})
 }
 
 //console.log(tabCercle);
@@ -58,14 +40,6 @@ for (let i = 0; i < 300; i++) {
 
 let leClavier = new Keyboard();
 
-// MainLoop.setUpdate(dt=>{
-//     console.log(dt)
-//     //c1.setX(c1.x+0.1*dt)
-// })
-// MainLoop.setDraw(dt=>{
-//     //c1.draw(dt);
-// })
-// MainLoop.start()
 let lastTime = 0;
 let animationTime = 0;
 // //estimation de 2 sec d'interval de temps
@@ -76,13 +50,10 @@ let animationTime = 0;
 
 
 
-// MainLoop.setUpdate(dt => {
-//     tabCercle.forEach(elm => {
-//         elm.setX(elm.x+0.1*dt)
-//     })
-// })
+
 //c1.setX(c1.x+0.1*deltaT);
 //c1.draw(dt)
+
 MainLoop.start()
 MainLoop.setDraw(dt => {
     ctx.canvas.height = ctx.canvas.clientHeight;
@@ -94,9 +65,10 @@ MainLoop.setDraw(dt => {
 
 
 
-
+//Listener pour keydown
 window.addEventListener('keydown', evt => {
-    console.log(evt.code)
+    //console.log(evt.code)
+    //Start du Mainloop
     MainLoop.start()
     switch (true) {
         //added infinity here
@@ -202,8 +174,6 @@ window.addEventListener('keydown', evt => {
                 })
             })
             break;
-
-
         default:
             MainLoop.stop();
             break;
@@ -217,6 +187,8 @@ window.addEventListener('keyup', evt => {
     }
 
 })
+
+//OTHER FUNCTION FOR EXAMINATION
 
 // function tick(time){
 //     let deltaT = time - lastTime;

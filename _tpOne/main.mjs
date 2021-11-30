@@ -188,6 +188,7 @@ window.addEventListener('keyup', evt => {
 
 })
 
+
 //OTHER FUNCTION FOR EXAMINATION
 
 // function tick(time){

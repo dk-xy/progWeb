@@ -51,6 +51,9 @@ export default class Cercle {
     setY(y) {
         this.y = y;
     }
+
+
+
     getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';

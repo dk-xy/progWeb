@@ -26,3 +26,6 @@ for (let row = 0; row < rows; row++) {
     }
 }
 console.log(mat)
+
+Math.random() //on ne peut pas controler la "graine", aka seed
+

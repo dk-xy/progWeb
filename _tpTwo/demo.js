@@ -29,3 +29,4 @@ console.log(mat)
 
 Math.random() //on ne peut pas controler la "graine", aka seed
 
+//creation de matrice

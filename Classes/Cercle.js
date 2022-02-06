@@ -1,7 +1,8 @@
+//export default permet de renommer
 export default class Cercle {
-    //on envoit un objet dans le constructeur à l'aide des {}
+    //on envoit un objet dans le constructeur à l'aide des {}, l'ordre des parametre n'est plus important
     //les = dans les params sont des valeurs par défaut
-    constructor({ x = 0, y = 0, r = 100, speed = 0.1, color = 'red', colorborder = 'red' } = {}) { // ={} pour apply valeurs à objet vide
+    constructor({ x = 0, y = 0, r = 100, speed = 0, color = 'red', colorborder = 'red',  dir = 0 } = {}) { // ={} pour apply valeurs à objet vide
         this.x = x
         this.y = y
         this.r = r;
@@ -26,8 +27,10 @@ export default class Cercle {
         }
         this.color = color;
         this.colorborder = color;
+        this.dir = dir;
     }
 
+    //pas de arcfill, mais rectFill existe
     draw(ctx) {
         ctx.beginPath(); //cree ma forme
         ctx.fillStyle = this.color;

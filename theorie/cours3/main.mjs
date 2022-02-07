@@ -54,7 +54,7 @@ let mat = generate(rows, cols);
 //mat[3][1] = 6;
 console.log(JSON.stringify(mat))
 
-const automaton1 = new Automaton({ rows: 20, cols: 80, tileSize: 10 });
+const automaton1 = new Automaton({ rows: 20, cols: 80, tileSize: 20 , sizePx:20});
 automaton1.matrix[0][0] = 1;
 
 console.log(automaton1.matrix);
